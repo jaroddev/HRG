@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import GameStatusBoard from './GameStatusBoard';
-import KeyBoard from './Keyboard';
-import Counter from './Counter';
-import Word from './Word';
+import GameStatusBoard from './components/Status/GameStatusBoard';
+import KeyBoard from './components/KeyBoard/Keyboard';
+import Counter from './components/Status/Counter';
+import Word from './components/Word/Word';
 
 
 class App extends React.Component {
