@@ -1,0 +1,17 @@
+.keyboard button {
+    border-style: solid;
+    border-width: 2px 2px 8px 2px;
+    border-color: white dimGray lightGray gray;
+    background-color: white;
+    box-shadow: 0 0 8px #0000007F;
+    padding: 15px 20px;
+    text-align: center;
+    transition: 0.125s;
+    
+}
+
+.keyboard button:active {
+    margin-top: 4px;
+    border-bottom-width: 4px;
+    transition: 0.03125s;
+}

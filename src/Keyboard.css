@@ -1,0 +1,6 @@
+.keyboard {
+    display: flex;
+    flex: space-between;
+    justify-content: center;
+    margin: 20px 0;
+}

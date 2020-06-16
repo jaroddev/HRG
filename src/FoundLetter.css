@@ -1,0 +1,14 @@
+.found, .not-found {
+    margin: 0 2px;
+}
+
+.found {
+    color: greenyellow;
+    text-decoration: underline;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.not-found {
+    content: "_";
+}
