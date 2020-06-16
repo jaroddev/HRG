@@ -38,7 +38,6 @@ export default class Key extends React.Component {
     handleClick = () => {
         const { letter } = this.props;
 
-        console.log(letter)
         this.props.parentBehavior(letter)
     }
 

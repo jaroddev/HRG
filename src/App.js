@@ -39,9 +39,6 @@ class App extends React.Component {
 	updateGameStatus(missed, guessed, word) {
 		const boolArray = Array.from(word).map(letter => guessed.includes(letter))
 
-		console.log(missed, App.MAX_TRIALS)
-		console.log(missed > App.MAX_TRIALS)
-
 		if (missed > App.MAX_TRIALS - 1) {
 			return "lost"
 		} else if (boolArray.length === 0) {
