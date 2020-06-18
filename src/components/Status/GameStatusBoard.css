@@ -1,0 +1,18 @@
+.status {
+    display: none;
+}
+
+.status.won, .status.lost {
+    display: block;
+    margin: 0 auto;
+    width: 400px;
+    height: 200px;
+}
+
+.status.won {
+    background-image: url('/win.jpg');
+}
+
+.status.lost {
+    background-image: url('/lost.jpg');
+}

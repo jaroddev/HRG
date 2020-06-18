@@ -1,8 +1,9 @@
 import propTypes from 'prop-types'
 import React from 'react'
+import './GameStatusBoard.css'
 
 const GameStatusBoard = ({ status }) => {
-    return <div className="status">{(status === "won" || status === "lost") && status}</div>
+    return <div className={`status ${status}`}></div>
 }
 
 GameStatusBoard.propTypes = {
