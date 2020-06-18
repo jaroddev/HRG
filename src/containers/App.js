@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import GameStatusBoard from './components/Status/GameStatusBoard';
-import KeyBoard from './components/KeyBoard/Keyboard';
-import Counter from './components/Status/Counter';
-import Word from './components/Word/Word';
+import GameStatusBoard from '../components/Status/GameStatusBoard';
+import { Game } from '../components/Game'
 
 
 class App extends React.Component {
@@ -51,14 +49,17 @@ class App extends React.Component {
 
 	render() {
 		const { guessed, missed, word, status } = this.state;
+
 		return (
 			<div className="App" >
-				<GameStatusBoard status={status} />
-				<Counter missed={missed} />
-				<Word guessed={guessed} word={word} />
-				<KeyBoard parentBehavior={this.updateState} />
+				{
+					!["won", "lost"].includes(status)
+						? <Game guessed={guessed} missed={missed} word={word} updateState={this.updateState} />
+						: <GameStatusBoard status={status} />
+				}
 			</div>
 		)
+
 	}
 
 }

@@ -35,15 +35,22 @@ export default class Key extends React.Component {
         ])
     }
 
+    state = {
+        clicked:false
+    }
+
     handleClick = () => {
         const { letter } = this.props;
-
+        this.setState({
+            clicked:true
+        })
         this.props.parentBehavior(letter)
     }
 
     render() {
+        const {clicked} = this.state;
         return (
-            <button onClick={this.handleClick}>{
+            <button onClick={this.handleClick} disabled={clicked}>{
                 this.props.letter
             }</button>
         )

@@ -7,11 +7,15 @@
     padding: 15px 20px;
     text-align: center;
     transition: 0.125s;
-    
+
 }
 
 .keyboard button:active {
     margin-top: 4px;
     border-bottom-width: 4px;
     transition: 0.03125s;
+}
+
+.keyboard button:disabled {
+    display: none;
 }
