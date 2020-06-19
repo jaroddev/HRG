@@ -1,15 +1,18 @@
 import React from 'react';
 import KeyBoard from '../components/KeyBoard/Keyboard';
-import Counter from '../components/Status/Counter';
+import Hanger from '../components/Status/Hanger';
 import Word from '../components/Word/Word';
 
-export const Game = ({guessed, missed, word, updateState}) => {
-    console.log(updateState)
+export const Game = ({ guessed, missed, word, updateState }) => {
     return (
         <div className="game" >
-            <Counter missed={missed} />
-            <Word guessed={guessed} word={word} />
-            <KeyBoard parentBehavior={updateState} />
+            <div style={{ display: 'flex', margin: 'auto', width: '60%' }}>
+                <Hanger missed={missed} />
+                <div>
+                    <Word guessed={guessed} word={word} />
+                    <KeyBoard parentBehavior={updateState} />
+                </div>
+            </div>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import { Game } from '../components/Game'
 
 class App extends React.Component {
 
-	static MAX_TRIALS = 8;
+	static MAX_TRIALS = 6;
 
 	state = {
 		guessed: [],
@@ -55,7 +55,7 @@ class App extends React.Component {
 				{
 					!["won", "lost"].includes(status)
 						? <Game guessed={guessed} missed={missed} word={word} updateState={this.updateState} />
-						: <GameStatusBoard status={status} />
+						: <GameStatusBoard status={status} missed={missed} />
 				}
 			</div>
 		)
