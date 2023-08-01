@@ -1,8 +1,11 @@
-import propTypes from 'prop-types'
-import React from 'react'
 import FoundLetter from './FoundLetter';
 
-const Word = ({ guessed, word }) => {
+type props = {
+    guessed: Array<string>,
+    word: string
+};
+
+const Word = ({ guessed, word }: props) => {
     const letters = [...word].map((letter, index) => {
         return <FoundLetter
             key={index}
@@ -13,10 +16,5 @@ const Word = ({ guessed, word }) => {
 
     return <div className="word">{letters}</div>
 };
-
-Word.propTypes = {
-    guessed: propTypes.array,
-    word: propTypes.string
-}
 
 export default Word

@@ -1,11 +1,17 @@
-import React from 'react';
 import KeyBoard from '../components/KeyBoard/Keyboard';
 import Hanger from '../components/Status/Hanger';
 import Word from '../components/Word/Word';
 
-export const Game = ({ guessed, missed, word, updateState }) => {
+type props = {
+    guessed: Array<string>,
+    missed: any,
+    word: string,
+    updateState: any
+};
+
+export const Game = ({ guessed, missed, word, updateState }: props) => {
     return (
-        <div className="game" >
+        <div className="game">
             <div style={{ display: 'flex', margin: 'auto', width: '60%' }}>
                 <Hanger missed={missed} />
                 <div>
