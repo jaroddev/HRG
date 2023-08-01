@@ -6,7 +6,7 @@ type props = {
 
 const Hanger = ({ missed }: props) => {
     return <div style={style}>
-        <img src={`/hanger/${missed}.png`} alt="hanger images" />
+        <img src={`hanger/${missed}.png`} alt="hanger images" />
     </div>
 }
 
