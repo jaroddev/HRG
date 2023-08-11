@@ -5,10 +5,20 @@ type props = {
     letter: string
 };
 
+const UNREVEALED = '_' as const;
+
+// should be just letter
+// hangman hint ? hangman letter ??
+// something lile that ???
 const FoundLetter = ({ found, letter }: props) => {
     return (
-        found ? <span className="found">{letter}</span> : <span className="not-found">_</span>
+        found ? <Guessed letter={letter} found={found} />
+            : <Unrevealed />
     )
 }
+
+const Guessed = ({ letter }: props) => <span className="found">{letter}</span>;
+
+const Unrevealed = () => <span className="not-found">{UNREVEALED}</span>;
 
 export default FoundLetter;

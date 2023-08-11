@@ -1,58 +1,57 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
+import type { Letter, history, score, status } from './domain';
+import { computeScore, computeStatus, push } from './domain';
 import GameStatusBoard from './components/Status/GameStatusBoard';
 import { Game } from './components/Game'
 
-const MAX_TRIALS = 6;
+const useHistory = (word: any) => {
+	const [history, setHistory] = useState<history>([]);
+
+	const [score, setScore] = useState<score>({
+		missed: 0,
+		found: 0
+	});
+
+	useEffect(() => {
+		const newScore = computeScore(word, history)
+		setScore(newScore);
+	}, [history])
+
+	const [status, setStatus] = useState<status>("");
+
+	useEffect(() => {
+		const newStatus = computeStatus(score, word);
+		setStatus(newStatus);
+	}, [score])
+
+	const guess = (letter: Letter) => {
+		setHistory(
+			push(history, letter)
+		)
+	}
+
+
+	return {
+		history,
+		score,
+		status,
+		guess
+	}
+}
 
 function App() {
-	// guessedLetters
-	const [guessed, setGuessed] = useState<string[]>([]);
-	const [missed, setMissed] = useState(0);
 	const [word, _] = useState("Hangman".toUpperCase());
-	const [status, setStatus] = useState<"" | "won" | "lost">("");
-
-	const updateGameStatus = (): "" | "won" | "lost" => {
-		const boolArray = Array.from(word).map(letter => guessed.includes(letter))
-
-		if (boolArray.length === 0) {
-			return ""
-		}
-
-		if (missed > MAX_TRIALS - 1) {
-			return "lost"
-		} else if (boolArray.reduce((base, value) => base && value)) {
-			return "won"
-		}
-
-		return ""
-	}
-
-	const updateState = (letter: string) => {
-		const alreadyGuessed = guessed.includes(letter);
-
-		if (!alreadyGuessed) {
-			setGuessed([
-				...guessed,
-				letter
-			])
-		}
-
-		if (!alreadyGuessed && !word.includes(letter)) {
-			setMissed(missed + 1);
-		}
-
-		setStatus(updateGameStatus())
-	}
+	const { guess, history, score, status } = useHistory(word);
 
 	return (
 		<>
 			<div className="App" >
 				{
 					!["won", "lost"].includes(status)
-						? <Game guessed={guessed} missed={missed} word={word} updateState={updateState} />
-						: <GameStatusBoard status={status} missed={missed} />
+						? <Game guessed={history} missed={score.missed} word={word} updateState={guess} />
+						: <GameStatusBoard status={status} missed={score.missed} />
 				}
 			</div>
 		</>
