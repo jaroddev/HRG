@@ -1,10 +1,10 @@
 import { describe, it } from "vitest"
 
-import type { word, history, score } from './domain'
+import type { word, Letter, score } from './domain'
 import { computeScore, computeStatus, push, alreadyContained } from './domain';
 
 describe("testing history", () => {
-    let h: history = [];
+    let h: Letter[] = [];
     const a = "A";
 
     it("create an empty history and add an element to it", ({ expect }) => {
@@ -23,7 +23,7 @@ describe("testing score", () => {
     const w: word = "HANGMAN";
 
     it("test that empty history means empty score", ({ expect }) => {
-        let h: history = [];
+        let h: Letter[] = [];
 
         const { missed, found } = computeScore(w, h)
 
@@ -33,7 +33,7 @@ describe("testing score", () => {
 
 
     it("test that found is 1 when letter appears only once", ({ expect }) => {
-        let h: history = [];
+        let h: Letter[] = [];
         h = push(h, "H")
 
         const { missed, found } = computeScore(w, h)
@@ -43,7 +43,7 @@ describe("testing score", () => {
     })
 
     it("test that found is 2 when letter appears twice", ({ expect }) => {
-        let h: history = [];
+        let h: Letter[] = [];
         h = push(h, "N")
 
         const { missed, found } = computeScore(w, h)
@@ -53,7 +53,7 @@ describe("testing score", () => {
     })
 
     it("test that found is 2 when two letters appears once", ({ expect }) => {
-        let h: history = [];
+        let h: Letter[] = [];
         h = push(h, "H")
         h = push(h, "G")
 
@@ -64,7 +64,7 @@ describe("testing score", () => {
     })
 
     it("more complex scenario with fails and success", ({ expect }) => {
-        let h: history = [];
+        let h: Letter[] = [];
 
         // success
         h = push(h, "H")
@@ -155,7 +155,7 @@ describe("integration test", () => {
     const w: word = "HANGMAN";
 
     it("test that status is won if all letters happen to be found", ({ expect }) => {
-        let h: history = [];
+        let h: Letter[] = [];
         h = push(h, "H")
         h = push(h, "A")
         h = push(h, "N")

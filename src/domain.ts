@@ -30,7 +30,6 @@ const letters = [
 export type Letter = typeof letters[number];
 
 export type word = string;
-export type history = Letter[];
 
 export type score = {
     missed: number,
@@ -41,7 +40,7 @@ const statusList = ["", "won", "lost"] as const;
 export type status = typeof statusList[number];
 
 export const alreadyContained = new Error('value is already in history');
-export function push(history: history, letter: Letter): history {
+export function push(history: Letter[], letter: Letter): Letter[] {
     if (history.includes(letter)) {
         // should we really throw an exception here??
         // we could just return the original array
@@ -54,7 +53,7 @@ export function push(history: history, letter: Letter): history {
     ];
 }
 
-export function computeScore(word: word, history: history): score {
+export function computeScore(word: word, history: Letter[]): score {
     const freq = new Map<Letter, number>();
     let found = 0;
     let missed = 0;
